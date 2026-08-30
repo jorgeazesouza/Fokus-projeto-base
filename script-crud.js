@@ -17,5 +17,5 @@ formAdicionarTarefa.addEventListener('submit', (evento) => {
     };
     tarefas.push(tarefa); // armazenando tarefa na lista
     //            chave de acesso   variavel armazenada
-    localStorage.setItem('tarefas', tarefas);
+    localStorage.setItem('tarefas', JSON.stringify(tarefas));
 });
