@@ -1,10 +1,11 @@
-const { createElement } = require("react");
-
 // encontrar o botão adicionar tarefa
+
 const adicionarTarefaBt = document.querySelector('.app__button--add-task');
 const formAdicionarTarefa = document.querySelector('.app__form-add-task');
 const textarea = document.querySelector('.app__form-textarea');
-const tarefas = []; // lista de tarefas
+const ulTarefas = document.querySelector('.app__section-task-list');
+
+const tarefas = JSON.parse(localStorage.getItem('tarefas')) || [];
 
 function criarElementoTarefa(tarefa) {
     // criando tags
@@ -30,6 +31,8 @@ function criarElementoTarefa(tarefa) {
     li.append(svg);
     li.append(paragrafo);
     li.append(botao);
+
+    return li;
 }
 
 adicionarTarefaBt.addEventListener('click', () => {
@@ -46,4 +49,9 @@ formAdicionarTarefa.addEventListener('submit', (evento) => {
     tarefas.push(tarefa); // armazenando tarefa na lista
     //            chave de acesso   variavel armazenada
     localStorage.setItem('tarefas', JSON.stringify(tarefas));
+});
+
+tarefas.forEach((tarefa) => {
+    const elementoTarefa = criarElementoTarefa(tarefa);
+    ulTarefas.append(elementoTarefa);
 });
