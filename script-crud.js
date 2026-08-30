@@ -16,16 +16,18 @@ function criarElementoTarefa(tarefa) {
     const imagemBotao = document.createElement('img');
 
     // conteudo e atributos das tags
-    li.classList.add('app__section-task-list-item'); // adicionando classe
+    li.classList.add('app__section-task-list-item');
     svg.innerHTML = `
         <svg class="app__section-task-icon-status" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="12" cy="12" r="12" fill="#FFF"></circle>
             <path d="M9 16.1719L19.5938 5.57812L21 6.98438L9 18.9844L3.42188 13.4062L4.82812 12L9 16.1719Z" fill="#01080E"></path>
         </svg>
     `;
+    paragrafo.classList.add('app__section-task-list-item-description');
     paragrafo.textContent = tarefa.descricao;
-    imagemBotao.setAttribute('src', '/imagens/edit.png');
+    botao.classList.add('app_button-edit');
     botao.append(imagemBotao);
+    imagemBotao.setAttribute('src', '/imagens/edit.png');
 
     // adicionando
     li.append(svg);
@@ -47,8 +49,11 @@ formAdicionarTarefa.addEventListener('submit', (evento) => {
         descricao: textarea.value
     };
     tarefas.push(tarefa); // armazenando tarefa na lista
-    //            chave de acesso   variavel armazenada
-    localStorage.setItem('tarefas', JSON.stringify(tarefas));
+    const elementoTarefa = criarElementoTarefa(tarefa);
+    ulTarefas.append(elementoTarefa);
+    localStorage.setItem('tarefas', JSON.stringify(tarefas)); // chave de acesso - variavel 
+    textarea.value = '';
+    formAdicionarTarefa.classList.add('hidden');
 });
 
 tarefas.forEach((tarefa) => {
