@@ -25,9 +25,15 @@ function criarElementoTarefa(tarefa) {
     `;
     paragrafo.classList.add('app__section-task-list-item-description');
     paragrafo.textContent = tarefa.descricao;
+    
     botao.classList.add('app_button-edit');
-    botao.append(imagemBotao);
+    // nova descrição tarefa
+    botao.onclick = () => {
+        const novaDescricao = prompt('Qual é o novo nome da tarefa?');
+        paragrafo.textContent = novaDescricao;
+    };
     imagemBotao.setAttribute('src', '/imagens/edit.png');
+    botao.append(imagemBotao);
 
     // adicionando
     li.append(svg);
