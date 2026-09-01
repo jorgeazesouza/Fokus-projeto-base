@@ -27,19 +27,19 @@ musicaFocoInput.addEventListener('change', () => {
 
 // Observadores
 focoBt.addEventListener('click', () => {
-    tempoDecorridoEmSegundos = 25; // 25 min
+    tempoDecorridoEmSegundos = 1500; // 25 min
     alterarContexto('foco');
     focoBt.classList.add('active'); // adicionando classe de foco
 });
 
 curtoBt.addEventListener('click', () => {
-    tempoDecorridoEmSegundos = 5; // 5 min
+    tempoDecorridoEmSegundos = 300; // 5 min
     alterarContexto('descanso-curto');
     curtoBt.classList.add('active'); // adicionando classe de foco
 });
 
 longoBt.addEventListener('click', () => {
-    tempoDecorridoEmSegundos = 15; // 15 min
+    tempoDecorridoEmSegundos = 900; // 15 min
     alterarContexto('descanso-longo');
     longoBt.classList.add('active'); // adicionando classe de foco
 });
