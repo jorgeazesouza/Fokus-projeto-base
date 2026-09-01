@@ -25,22 +25,21 @@ musicaFocoInput.addEventListener('change', () => {
     musica.paused ? musica.play() : musica.pause(); // pausar e começar a musica
 });
 
-
 // Observadores
 focoBt.addEventListener('click', () => {
-    tempoDecorridoEmSegundos = 1500; // 25 min
+    tempoDecorridoEmSegundos = 25; // 25 min
     alterarContexto('foco');
     focoBt.classList.add('active'); // adicionando classe de foco
 });
 
 curtoBt.addEventListener('click', () => {
-    tempoDecorridoEmSegundos = 300; // 5 min
+    tempoDecorridoEmSegundos = 5; // 5 min
     alterarContexto('descanso-curto');
     curtoBt.classList.add('active'); // adicionando classe de foco
 });
 
 longoBt.addEventListener('click', () => {
-    tempoDecorridoEmSegundos = 900; // 15 min
+    tempoDecorridoEmSegundos = 15; // 15 min
     alterarContexto('descanso-longo');
     longoBt.classList.add('active'); // adicionando classe de foco
 });
@@ -82,8 +81,13 @@ function alterarContexto(contexto) {
 // Timer
 const contagemRegressiva = () => {
     if(tempoDecorridoEmSegundos === 0) {
-        zerar(); // zera quando chega no zero
         audioEnd.play();
+        const focoAtivo = html.getAttribute('data-contexto') == 'foco';
+        if (focoAtivo) {
+            const evento = new CustomEvent('FocoFinalizado'); // Evento Customizado
+            document.dispatchEvent(evento); // dispara um evento
+        }
+        zerar(); // zera quando chega no zero
         return; // interrompe
     }
 
